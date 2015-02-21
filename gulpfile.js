@@ -17,15 +17,6 @@ var SRCLESS = SRC + 'less/';
 var DIST = 'dist/';
 var EXAMPLE = 'example/gift-aid-calculator/';
 
-/**
- * Error handler.
- * @param {Object} err The error object.
- */
-function logError(err) {
-  console.log(err.message);
-  this.emit('end');
-}
-
 // Process JavaScript and add to dist and example folders.
 gulp.task('scripts', function() {
 
