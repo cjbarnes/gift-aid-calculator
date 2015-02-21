@@ -129,7 +129,7 @@ gulp.task('styles', function() {
 gulp.task('assets', function() {
 
   // Copy all files in assets to both /example and /dist.
-  return gulp.src(SRC + 'assets/**/*.*')
+  return gulp.src(SRC + 'assets/**/*.*', {read: false})
     .pipe(gulp.dest(EXAMPLE + 'assets/'))
     .pipe(gulp.dest(DIST + 'assets/'))
     .pipe(notify({
