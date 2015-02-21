@@ -6,6 +6,7 @@ var autoprefixer = require('gulp-autoprefixer');
 var csscomb      = require('gulp-csscomb');
 var less         = require('gulp-less');
 var minifyCSS    = require('gulp-minify-css');
+var notify       = require('gulp-notify');
 var rename       = require('gulp-rename');
 var sourcemaps   = require('gulp-sourcemaps');
 var uglify       = require('gulp-uglify');
@@ -16,6 +17,15 @@ var SRCLESS = SRC + 'less/';
 var DIST = 'dist/';
 var EXAMPLE = 'example/gift-aid-calculator/';
 
+/**
+ * Error handler.
+ * @param {Object} err The error object.
+ */
+function logError(err) {
+  console.log(err.message);
+  this.emit('end');
+}
+
 // Process JavaScript and add to dist and example folders.
 gulp.task('scripts', function() {
 
@@ -25,13 +35,32 @@ gulp.task('scripts', function() {
     .pipe(uglify({
       preserveComments: 'some'
     }))
+    .on('error', notify.onError({
+      message: "Scripts Error: <%= error.message %>",
+      title: "Uglify error",
+      sound: 'Pop'
+    }))
+    // Output to /example and (with sourcemap) /dist.
     .pipe(rename({
       extname: '.min.js'
     }))
-    // Output to /example and (with sourcemap) /dist.
+    .on('error', notify.onError({
+      message: "Scripts Error: <%= error.message %>",
+      title: "Rename error",
+      sound: 'Pop'
+    }))
     .pipe(gulp.dest(EXAMPLE))
     .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest(DIST));
+    .on('error', notify.onError({
+      message: "Scripts Error: <%= error.message %>",
+      title: "Sourcemaps error",
+      sound: 'Pop'
+    }))
+    .pipe(gulp.dest(DIST))
+    .pipe(notify({
+      message: 'Scripts compiled successfully.',
+      sound: false
+    }));
 });
 
 /*
@@ -44,6 +73,11 @@ gulp.task('styles', function() {
     .pipe(sourcemaps.init())
     // Compile Less.
     .pipe(less())
+    .on('error', notify.onError({
+      message: "Styles Error: <%= error.message %>",
+      title: "Less compilation error",
+      sound: 'Pop'
+    }))
     // Automated support for old browsers.
     .pipe(autoprefixer({
       browsers: [
@@ -54,19 +88,47 @@ gulp.task('styles', function() {
         'ie >= 8'
       ]
     }))
+    .on('error', notify.onError({
+      message: "Styles Error: <%= error.message %>",
+      title: "Autoprefixer error",
+      sound: 'Pop'
+    }))
+    // Enforce the preferred CSS property order and format.
     .pipe(csscomb())
+    .on('error', notify.onError({
+      message: "Styles Error: <%= error.message %>",
+      title: "CSScomb error",
+      sound: 'Pop'
+    }))
     // Output to src as compiled, non-minified CSS.
     .pipe(gulp.dest(SRC))
     // Minify.
     .pipe(minifyCSS())
-    // Rename.
+    .on('error', notify.onError({
+      message: "Styles Error: <%= error.message %>",
+      title: "clean-css error",
+      sound: 'Pop'
+    }))
+    // Output to /example and (with sourcemap) /dist.
     .pipe(rename({
       extname: '.min.css'
     }))
-    // Output to /example and (with sourcemap) /dist.
+    .on('error', notify.onError({
+      message: "Styles Error: <%= error.message %>",
+      title: "Rename error",
+      sound: 'Pop'
+    }))
     .pipe(gulp.dest(EXAMPLE))
     .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest(DIST));
+    .on('error', notify.onError({
+      message: "Styles Error: <%= error.message %>",
+      title: "Sourcemaps error",
+      sound: 'Pop'
+    }))
+    .pipe(notify({
+      message: 'Styles compiled successfully.',
+      sound: false
+    }));
 });
 
 /*
@@ -78,7 +140,11 @@ gulp.task('assets', function() {
   // Copy all files in assets to both /example and /dist.
   return gulp.src(SRC + 'assets/**/*.*')
     .pipe(gulp.dest(EXAMPLE + 'assets/'))
-    .pipe(gulp.dest(DIST + 'assets/'));
+    .pipe(gulp.dest(DIST + 'assets/'))
+    .pipe(notify({
+      message: 'Assets copied across successfully.',
+      sound: false
+    }));
 });
 
 /* Default action. Run all tasks, then watch for source file changes. */
