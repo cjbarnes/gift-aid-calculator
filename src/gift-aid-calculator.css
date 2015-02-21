@@ -1,0 +1,24 @@
+/*!
+ * Sample CSS for the Gift Aid calculator.
+ * @author cJ barnes mail@cjbarnes.co.uk
+ * @version 1.0.0
+ * @license MIT
+ */
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+ 1.0 Base
+ 2.0
+--------------------------------------------------------------*/
+/*--------------------------------------------------------------
+1.0 Base
+--------------------------------------------------------------*/
+/* Use the simpler box model that includes padding in element heights/widths. */
+.giftaidcalc {
+    box-sizing: border-box;
+}
+.giftaidcalc *,
+.giftaidcalc *:before,
+.giftaidcalc *:after {
+    box-sizing: inherit;
+}
