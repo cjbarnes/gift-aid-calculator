@@ -8,17 +8,27 @@
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
  1.0 Base
- 2.0
+ 2.0 Dynamic elements
 --------------------------------------------------------------*/
 /*--------------------------------------------------------------
 1.0 Base
 --------------------------------------------------------------*/
 /* Use the simpler box model that includes padding in element heights/widths. */
-.giftaidcalc {
+.giftaid-calculator {
     box-sizing: border-box;
 }
-.giftaidcalc *,
-.giftaidcalc *:before,
-.giftaidcalc *:after {
+.giftaid-calculator *,
+.giftaid-calculator *:before,
+.giftaid-calculator *:after {
     box-sizing: inherit;
+}
+/*--------------------------------------------------------------
+2.0 Dynamic elements
+--------------------------------------------------------------*/
+/* Only show the Giver Claims fields to higher-rate taxpayers. */
+.giftaid-group-giver {
+    display: none;
+}
+.show-giver-claims .giftaid-group-giver {
+    display: block;
 }

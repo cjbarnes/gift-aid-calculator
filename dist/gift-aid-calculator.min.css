@@ -3,5 +3,5 @@
  * @author cJ barnes mail@cjbarnes.co.uk
  * @version 1.0.0
  * @license MIT
- */.giftaidcalc{box-sizing:border-box}.giftaidcalc *,.giftaidcalc :after,.giftaidcalc :before{box-sizing:inherit}
+ */.giftaid-calculator{box-sizing:border-box}.giftaid-calculator *,.giftaid-calculator :after,.giftaid-calculator :before{box-sizing:inherit}.giftaid-group-giver{display:none}.show-giver-claims .giftaid-group-giver{display:block}
 /*# sourceMappingURL=gift-aid-calculator.min.css.map */
