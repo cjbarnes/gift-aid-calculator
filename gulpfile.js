@@ -10,6 +10,7 @@ var minifyCSS    = require('gulp-minify-css');
 var notify       = require('gulp-notify');
 var plumber      = require('gulp-plumber');
 var rename       = require('gulp-rename');
+var runSequence  = require('run-sequence');
 var sourcemaps   = require('gulp-sourcemaps');
 var uglify       = require('gulp-uglify');
 
@@ -130,13 +131,21 @@ gulp.task('assets', function() {
 });
 
 /* Default action. Run all tasks, then watch for source file changes. */
-gulp.task('default', ['scripts', 'styles', 'assets', 'example-html', 'complete-html'], function() {
+gulp.task('default', ['scripts', 'styles', 'assets', 'example-html'], function() {
+
+  // Only compile the HTML after compiling the CSS and JS parts. Using
+  // run-sequence for now, will replace after Gulp v4.0 release.
+  runSequence('complete-html');
 
   // Watch JavaScript files.
-  gulp.watch(src + 'gift-aid-calculator.js', ['scripts', 'complete-html']);
+  gulp.watch(src + 'gift-aid-calculator.js', function() {
+    runSequence('scripts', 'complete-html');
+  });
 
   // Watch Less files.
-  gulp.watch(srcLess + 'gift-aid-calculator.less', ['styles', 'complete-html']);
+  gulp.watch(srcLess + 'gift-aid-calculator.less', function() {
+    runSequence('styles', 'complete-html');
+  });
 
   // Watch assets.
   gulp.watch(src + 'assets/**/*', ['assets']);
