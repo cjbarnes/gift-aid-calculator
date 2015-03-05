@@ -4,10 +4,11 @@
 var gulp         = require('gulp');
 var autoprefixer = require('gulp-autoprefixer');
 var csscomb      = require('gulp-csscomb');
+var fileinclude  = require('gulp-file-include');
 var less         = require('gulp-less');
 var minifyCSS    = require('gulp-minify-css');
-var plumber      = require('gulp-plumber');
 var notify       = require('gulp-notify');
+var plumber      = require('gulp-plumber');
 var rename       = require('gulp-rename');
 var sourcemaps   = require('gulp-sourcemaps');
 var uglify       = require('gulp-uglify');
@@ -84,6 +85,39 @@ gulp.task('styles', function() {
 });
 
 /*
+ * Output the example's HTML file.
+ */
+gulp.task('example-html', function() {
+
+  return gulp.src(src + 'example.html')
+    // Error handling: notify on error.
+    .pipe(plumber(notify.onError({
+      title: 'Error compiling example.html',
+      message: "HTML Error: <%= error.message %>",
+      sound: 'Pop'
+    })))
+    .pipe(fileinclude())
+    .pipe(gulp.dest('example/'));
+});
+
+/*
+ * Output an HTML partial that contains the entire Gift Aid calculator code
+ * (HTML and inline minified CSS and JavaScript).
+ */
+gulp.task('complete-html', function() {
+
+  return gulp.src(src + 'gift-aid-calculator-complete.html')
+    // Error handling: notify on error.
+    .pipe(plumber(notify.onError({
+      title: 'Error compiling gift-aid-calculator-complete.html',
+      message: "HTML Error: <%= error.message %>",
+      sound: 'Pop'
+    })))
+    .pipe(fileinclude())
+    .pipe(gulp.dest(dist));
+});
+
+/*
  * Copy assets to the dist and example folders. Note that when called with
  * `gulp.watch()`, added files will **not** trigger this task.
  */
@@ -96,15 +130,20 @@ gulp.task('assets', function() {
 });
 
 /* Default action. Run all tasks, then watch for source file changes. */
-gulp.task('default', ['scripts', 'styles', 'assets'], function() {
+gulp.task('default', ['scripts', 'styles', 'assets', 'example-html', 'complete-html'], function() {
 
   // Watch JavaScript files.
-  gulp.watch(src + 'gift-aid-calculator.js', ['scripts']);
+  gulp.watch(src + 'gift-aid-calculator.js', ['scripts', 'complete-html']);
 
   // Watch Less files.
-  gulp.watch(srcLess + 'gift-aid-calculator.less', ['styles']);
+  gulp.watch(srcLess + 'gift-aid-calculator.less', ['styles', 'complete-html']);
 
   // Watch assets.
   gulp.watch(src + 'assets/**/*', ['assets']);
+
+  // Watch HTML files.
+  gulp.watch(src + 'gift-aid-calculator.html', ['example-html', 'complete-html']);
+  gulp.watch(src + 'example.html', ['example-html']);
+  gulp.watch(src + 'gift-aid-calculator-complete.html', ['complete-html']);
 
 });

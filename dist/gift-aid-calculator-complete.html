@@ -1,0 +1,73 @@
+<div class="giftaid-calculator-wrapper">
+<style>
+/*!
+ * Sample CSS for the Gift Aid calculator.
+ * @author cJ barnes mail@cjbarnes.co.uk
+ * @version 1.0.0
+ * @license MIT
+ */.giftaid-calculator{box-sizing:border-box}.giftaid-calculator *,.giftaid-calculator :after,.giftaid-calculator :before{box-sizing:inherit}.giftaid-group-giver{display:none}.show-giver-claims .giftaid-group-giver{display:block}
+/*# sourceMappingURL=gift-aid-calculator.min.css.map */
+</style>
+<!-- Gift Aid calculator -->
+<form class="js-giftaid-calculator no-js giftaid-calculator">
+  <fieldset class="giftaid-group giftaid-group-initial">
+    <legend>Initial Gift</legend>
+    <p>
+      <label for="giftaid-gift-input">Your gift:</label>
+      <strong>£</strong>
+      <input class="js-input-gift" id="giftaid-gift-input" type="number" step="0.01" min="5" value="10.00">
+    </p>
+    <p>
+      <label for="giftaid-taxrate">Your tax rate:</label>
+      <select class="js-input-taxrate" id="giftaid-taxrate">
+        <option value="20" selected>20%</option>
+        <option value="40">40%</option>
+        <option value="45">45%</option>
+      </select>
+    </p>
+  </fieldset>
+  <fieldset class="giftaid-group giftaid-group-charity">
+    <legend>Charity Gets</legend>
+    <p>
+      <label>Initial gift:</label>
+      <strong>£</strong>
+      <strong class="js-output-gross-gift">&nbsp;</strong>
+    </p>
+    <p>
+      <label>+ Gift Aid of:</label>
+      <strong>£</strong>
+      <strong class="js-output-charity-claims">&nbsp;</strong>
+    </p>
+    <p>
+      <label>Total charity gets</label>
+      <strong>£</strong>
+      <strong class="js-output-net-gift-received">&nbsp;</strong>
+    </p>
+  </fieldset>
+  <fieldset class="giftaid-group giftaid-group-giver">
+    <legend>You Get</legend>
+    <p>
+      <label>Tax you can claim back:</label>
+      <strong>£</strong>
+      <strong class="js-output-giver-claims">&nbsp;</strong>
+    </p>
+    <p>
+      <label>Your gift <em>actually</em> costs you:</label>
+      <strong>£</strong>
+      <strong class="js-output-net-gift-given">&nbsp;</strong>
+    </p>
+  </fieldset>
+</form>
+
+<script>
+/**
+ * All JavaScript for the Gift Aid calculator
+ * {@link https://github.com/cjbarnes/gift-aid-calculator}.
+ * @author cJ barnes mail@cjbarnes.co.uk
+ * @version 1.0.0
+ * @license MIT
+ */
+!function(){"use strict";function e(e){return e=parseInt(e,10)||0,(e/100).toFixed(2)}function t(e){return"number"==typeof e&&e>0&&1>e&&(e=100*e),e=parseInt(e,10),e==e&&e>100&&(e=0/0),e}function n(n,a){var s,r,i,l,c=20,u=0;return a=t(a)||c,s=c>a?a:c,n=parseInt(100*n,10)||0,r=n*s/(100-s),l=n+r,a>s&&(u=l*a/100-r),i=n-u,{grossGift:e(n),taxRate:a,charityClaims:e(r),giverClaims:e(u),netGiftGiven:e(i),netGiftReceived:e(l)}}function a(e){var t,a,s,r,i,l,c=/(^| )show-giver-claims( |$)/;if(e.className&&/(^| )js-giftaid-calculator( |$)/.test(e.className)&&(t=e.querySelector(".js-input-gift"),a=e.querySelector(".js-input-taxrate"),null!==t&&null!==a)){r=n(t.value,a.value),e.classList?"0.00"!==r.giverClaims?e.classList.add("show-giver-claims"):e.classList.remove("show-giver-claims"):"0.00"===r.giverClaims||c.test(e.className)?"0.00"===r.giverClaims&&c.test(e.className)&&(e.className=e.className.replace(c," ")):e.className+=" show-giver-claims",s={grossGift:e.querySelectorAll(".js-output-gross-gift"),taxRate:e.querySelectorAll(".js-output-taxrate"),charityClaims:e.querySelectorAll(".js-output-charity-claims"),giverClaims:e.querySelectorAll(".js-output-giver-claims"),netGiftGiven:e.querySelectorAll(".js-output-net-gift-given"),netGiftReceived:e.querySelectorAll(".js-output-net-gift-received")};for(var u in s)for(i=0,l=s[u].length;l>i;i++)void 0!==s[u][i].textContent?s[u][i].textContent=r[u]:s[u][i].innerText=r[u]}}function s(e){return function(){a(e)}}function r(e,t,n){e.addEventListener?e.addEventListener(t,n):e.attachEvent("on"+t,function(t){t.target=t.srcElement,t.currentTarget=e,t.preventDefault=function(){this.returnValue=!1},n.call(e,t)})}function i(e){e.preventDefault()}function l(){var e,t,n,l,c,u=document.querySelectorAll(".js-giftaid-calculator");if(!u.length)return!1;for(function(){var n=/(^| )no-js( |$)/;for(e=0,t=u.length;t>e;e++)u[e].classList?(u[e].classList.add("js"),u[e].classList.remove("no-js")):u[e].className=u[e].className.replace(n," js ")}(),e=0,t=u.length;t>e;e++)n=u[e],a(n),r(n,"submit",i),l=n.querySelector(".js-input-gift"),c=n.querySelector(".js-input-taxrate"),null!==l&&null!==c&&(r(l,"keyup",s(n)),r(l,"change",s(n)),r(c,"change",s(n)))}"loading"!==document.readyState?l():document.addEventListener?document.addEventListener("DOMContentLoaded",l):document.attachEvent("onreadystatechange",function(){"loading"!==document.readyState&&l()})}();
+//# sourceMappingURL=gift-aid-calculator.min.js.map
+</script>
+</div>
