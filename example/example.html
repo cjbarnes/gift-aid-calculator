@@ -18,10 +18,11 @@
 </head>
 <body>
 
+<h2 class="giftaid-calculator-title">Calculate a Gift Aid donation</h2>
 <!-- Gift Aid calculator -->
 <form class="js-giftaid-calculator no-js giftaid-calculator">
-  <fieldset class="giftaid-group giftaid-group-initial">
-    <legend>Initial Gift</legend>
+  <div class="giftaid-group giftaid-group-giver">
+    <h3>You</h3>
     <p>
       <label for="giftaid-gift-input">Your gift:</label>
       <strong>£</strong>
@@ -35,9 +36,28 @@
         <option value="45">45%</option>
       </select>
     </p>
-  </fieldset>
-  <fieldset class="giftaid-group giftaid-group-charity">
-    <legend>Charity Gets</legend>
+    <div class="giftaid-giver-fields">
+      <p>
+        <label>Tax you can claim back:</label>
+        <strong>£</strong>
+        <strong class="js-output-giver-claims">&nbsp;</strong>
+      </p>
+    </div>
+    <p>
+      <label>Your gift <em>actually</em> costs you:</label>
+      <strong>£</strong>
+      <strong class="js-output-net-gift-given">&nbsp;</strong>
+    </p>
+  </div>
+  <div class="giftaid-spacing">
+    <p>
+      <strong class="giftaid-hmrc">
+        <abbr title="HM Revenue &amp; Customs">HMRC</abbr>
+      </strong>
+    </p>
+  </div>
+  <div class="giftaid-group giftaid-group-charity">
+    <h3>Charity</h3>
     <p>
       <label>Initial gift:</label>
       <strong>£</strong>
@@ -53,20 +73,7 @@
       <strong>£</strong>
       <strong class="js-output-net-gift-received">&nbsp;</strong>
     </p>
-  </fieldset>
-  <fieldset class="giftaid-group giftaid-group-giver">
-    <legend>You Get</legend>
-    <p>
-      <label>Tax you can claim back:</label>
-      <strong>£</strong>
-      <strong class="js-output-giver-claims">&nbsp;</strong>
-    </p>
-    <p>
-      <label>Your gift <em>actually</em> costs you:</label>
-      <strong>£</strong>
-      <strong class="js-output-net-gift-given">&nbsp;</strong>
-    </p>
-  </fieldset>
+  </div>
 </form>
 
 

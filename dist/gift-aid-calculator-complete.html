@@ -5,13 +5,10 @@
  * @author cJ barnes mail@cjbarnes.co.uk
  * @version 1.0.0
  * @license MIT
- */.giftaid-calculator{font-family:sans-serif}.giftaid-calculator b,.giftaid-calculator strong{font-weight:700}.giftaid-calculator button,.giftaid-calculator input,.giftaid-calculator optgroup,.giftaid-calculator select,.giftaid-calculator textarea{margin:0;font:inherit;color:inherit}.giftaid-calculator button{overflow:visible}.giftaid-calculator button,.giftaid-calculator select{text-transform:none}.giftaid-calculator button,.giftaid-calculator input[type=reset],.giftaid-calculator input[type=submit]{-webkit-appearance:button}.giftaid-calculator button::-moz-focus-inner,.giftaid-calculator input::-moz-focus-inner{padding:0;border:0}.giftaid-calculator input{line-height:normal}.giftaid-calculator input[type=number]::-webkit-inner-spin-button,.giftaid-calculator input[type=number]::-webkit-outer-spin-button{height:auto}.giftaid-calculator fieldset{margin:0 2px;padding:.35em .625em .75em;border:1px solid silver}.giftaid-calculator legend{padding:0;border:0}.giftaid-calculator{box-sizing:border-box}.giftaid-calculator *,.giftaid-calculator :after,.giftaid-calculator :before{box-sizing:inherit}.giftaid-group-giver{display:none}.show-giver-claims .giftaid-group-giver{display:block}
 /*# sourceMappingURL=gift-aid-calculator.min.css.map */
 </style>
 <!-- Gift Aid calculator -->
 <form class="js-giftaid-calculator no-js giftaid-calculator">
-  <fieldset class="giftaid-group giftaid-group-initial">
-    <legend>Initial Gift</legend>
     <p>
       <label for="giftaid-gift-input">Your gift:</label>
       <strong>£</strong>
@@ -25,9 +22,6 @@
         <option value="45">45%</option>
       </select>
     </p>
-  </fieldset>
-  <fieldset class="giftaid-group giftaid-group-charity">
-    <legend>Charity Gets</legend>
     <p>
       <label>Initial gift:</label>
       <strong>£</strong>
@@ -43,20 +37,6 @@
       <strong>£</strong>
       <strong class="js-output-net-gift-received">&nbsp;</strong>
     </p>
-  </fieldset>
-  <fieldset class="giftaid-group giftaid-group-giver">
-    <legend>You Get</legend>
-    <p>
-      <label>Tax you can claim back:</label>
-      <strong>£</strong>
-      <strong class="js-output-giver-claims">&nbsp;</strong>
-    </p>
-    <p>
-      <label>Your gift <em>actually</em> costs you:</label>
-      <strong>£</strong>
-      <strong class="js-output-net-gift-given">&nbsp;</strong>
-    </p>
-  </fieldset>
 </form>
 
 <script>

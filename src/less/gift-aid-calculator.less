@@ -13,8 +13,10 @@
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
  1.0 Normalize
- 2.0 Base
- 3.0 Dynamic elements
+ 2.0 Typography
+ 3.0 Layout
+ 4.0 Dynamic elements
+ 5.0 Theme
 --------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
@@ -36,44 +38,33 @@ scoped to the gift aid calculator container.
         font-weight: bold;
     }
 
-    // 1. Correct color not being inherited.
-    //    Known issue: affects color of disabled elements.
+    /**
+     * Address styling not present in IE 8/9/10/11, Safari, and Chrome.
+     */
+
+    abbr[title] {
+        border-bottom: 1px dotted;
+    }
+
+    // 1. Correct color not being inherited. Known issue: affects color of
+    //    disabled elements.
     // 2. Correct font properties not being inherited.
     // 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
-    button,
     input,
-    optgroup,
-    select,
-    textarea {
+    select {
         color: inherit; //* 1 */
         font: inherit; //* 2 */
         margin: 0; //* 3 */
     }
 
-    // Address `overflow` set to `hidden` in IE 8/9/10/11.
-    button {
-        overflow: visible;
-    }
-
-    // Address inconsistent `text-transform` inheritance for `button` and
-    // `select`.
+    // Address inconsistent `text-transform` inheritance for `select`.
     // All other form control elements do not inherit `text-transform` values.
-    // Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
     // Correct `select` style inheritance in Firefox.
-    button,
     select {
         text-transform: none;
     }
 
-    // 1. Correct inability to style clickable `input` types in iOS.
-    button,
-    input[type="reset"],
-    input[type="submit"] {
-        -webkit-appearance: button; //* 1 */
-    }
-
     // Remove inner padding and border in Firefox 4+.
-    button::-moz-focus-inner,
     input::-moz-focus-inner {
         border: 0;
         padding: 0;
@@ -93,30 +84,25 @@ scoped to the gift aid calculator container.
         height: auto;
     }
 
-    // Define consistent border, margin, and padding.
-    fieldset {
-        border: 1px solid #c0c0c0;
-        margin: 0 2px;
-        padding: 0.35em 0.625em 0.75em;
-    }
-
-    // 1. Correct `color` not being inherited in IE 8/9/10/11.
-    // 2. Remove padding so people aren't caught out if they zero out fieldsets.
-    legend {
-        border: 0; //* 1 */
-        padding: 0; //* 2 */
-    }
-
 }
+
+/*--------------------------------------------------------------
+2.0 Typography
+--------------------------------------------------------------*/
+
 
 
 /*--------------------------------------------------------------
-2.0 Base
+3.0 Layout
 --------------------------------------------------------------*/
 
-/* Use the simpler box model that includes padding in element heights/widths. */
+/**
+ * 1. Use the simpler box model that includes padding in element heights/widths.
+ * 2. Use flexbox layout for the three columns.
+ */
 .giftaid-calculator {
-    box-sizing: border-box;
+    box-sizing: border-box; //* 1 */
+    display: flex; //* 2 */
 
     *,
     *:before,
@@ -126,16 +112,65 @@ scoped to the gift aid calculator container.
 
 }
 
+/* Calculator title. */
+.giftaid-calculator-title {
+
+}
+
+/**
+ * Giver and Charity columns.
+ * 1. Occupy twice as much width as the in-between column.
+ */
+.giftaid-group {
+    flex-grow: 2; //* 1 */
+    text-align: center;
+}
+
+/**
+ * In-between column.
+ */
+.giftaid-spacing {
+    flex-grow: 1;
+    text-align: center;
+}
+
 /*--------------------------------------------------------------
-3.0 Dynamic elements
+4.0 Dynamic elements
 --------------------------------------------------------------*/
 
 /* Only show the Giver Claims fields to higher-rate taxpayers. */
-.giftaid-group-giver {
+.giftaid-giver-fields {
     display: none;
 
     .show-giver-claims & {
         display: block;
     }
 
+}
+
+/*--------------------------------------------------------------
+5.0 Theme
+--------------------------------------------------------------*/
+
+.giftaid-group-giver {
+    background: @background-color-giver;
+
+    h3 {
+        color: @color-giver;
+    }
+
+}
+
+.giftaid-group-charity {
+    background: @background-color-charity;
+
+    h3 {
+        color: @color-charity;
+    }
+
+}
+
+.giftaid-hmrc {
+    background: @background-color-hmrc;
+    color: @color-hmrc;
 }

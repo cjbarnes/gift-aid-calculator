@@ -8,8 +8,10 @@
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
  1.0 Normalize
- 2.0 Base
- 3.0 Dynamic elements
+ 2.0 Typography
+ 3.0 Layout
+ 4.0 Dynamic elements
+ 5.0 Theme
 --------------------------------------------------------------*/
 /*--------------------------------------------------------------
 1.0 Normalize
@@ -23,33 +25,26 @@ scoped to the gift aid calculator container.
 .giftaid-calculator {
     font-family: sans-serif;
     /* 1 */
+    /**
+     * Address styling not present in IE 8/9/10/11, Safari, and Chrome.
+     */
 }
 .giftaid-calculator b,
 .giftaid-calculator strong {
     font-weight: bold;
 }
-.giftaid-calculator button,
+.giftaid-calculator abbr[title] {
+    border-bottom: 1px dotted;
+}
 .giftaid-calculator input,
-.giftaid-calculator optgroup,
-.giftaid-calculator select,
-.giftaid-calculator textarea {
+.giftaid-calculator select {
     margin: 0;
     font: inherit;
     color: inherit;
 }
-.giftaid-calculator button {
-    overflow: visible;
-}
-.giftaid-calculator button,
 .giftaid-calculator select {
     text-transform: none;
 }
-.giftaid-calculator button,
-.giftaid-calculator input[type="reset"],
-.giftaid-calculator input[type="submit"] {
-    -webkit-appearance: button;
-}
-.giftaid-calculator button::-moz-focus-inner,
 .giftaid-calculator input::-moz-focus-inner {
     padding: 0;
     border: 0;
@@ -61,34 +56,75 @@ scoped to the gift aid calculator container.
 .giftaid-calculator input[type="number"]::-webkit-outer-spin-button {
     height: auto;
 }
-.giftaid-calculator fieldset {
-    margin: 0 2px;
-    padding: 0.35em 0.625em 0.75em;
-    border: 1px solid #c0c0c0;
-}
-.giftaid-calculator legend {
-    padding: 0;
-    border: 0;
-}
 /*--------------------------------------------------------------
-2.0 Base
+2.0 Typography
 --------------------------------------------------------------*/
-/* Use the simpler box model that includes padding in element heights/widths. */
+/*--------------------------------------------------------------
+3.0 Layout
+--------------------------------------------------------------*/
+/**
+ * 1. Use the simpler box model that includes padding in element heights/widths.
+ * 2. Use flexbox layout for the three columns.
+ */
 .giftaid-calculator {
     box-sizing: border-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
 }
 .giftaid-calculator *,
 .giftaid-calculator *:before,
 .giftaid-calculator *:after {
     box-sizing: inherit;
 }
+/* Calculator title. */
+/**
+ * Giver and Charity columns.
+ * 1. Occupy twice as much width as the in-between column.
+ */
+.giftaid-group {
+    text-align: center;
+
+    -webkit-flex-grow: 2;
+    -ms-flex-positive: 2;
+            flex-grow: 2;
+}
+/**
+ * In-between column.
+ */
+.giftaid-spacing {
+    text-align: center;
+
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+            flex-grow: 1;
+}
 /*--------------------------------------------------------------
-3.0 Dynamic elements
+4.0 Dynamic elements
 --------------------------------------------------------------*/
 /* Only show the Giver Claims fields to higher-rate taxpayers. */
-.giftaid-group-giver {
+.giftaid-giver-fields {
     display: none;
 }
-.show-giver-claims .giftaid-group-giver {
+.show-giver-claims .giftaid-giver-fields {
     display: block;
+}
+/*--------------------------------------------------------------
+5.0 Theme
+--------------------------------------------------------------*/
+.giftaid-group-giver {
+    background: #9cc5bd;
+}
+.giftaid-group-giver h3 {
+    color: #236b5d;
+}
+.giftaid-group-charity {
+    background: #dcf1a1;
+}
+.giftaid-group-charity h3 {
+    color: #5e7914;
+}
+.giftaid-hmrc {
+    background: #f3a2ad;
+    color: #791422;
 }
