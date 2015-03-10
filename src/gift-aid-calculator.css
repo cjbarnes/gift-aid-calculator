@@ -7,11 +7,71 @@
 /*--------------------------------------------------------------
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
- 1.0 Base
- 2.0 Dynamic elements
+ 1.0 Normalize
+ 2.0 Base
+ 3.0 Dynamic elements
 --------------------------------------------------------------*/
 /*--------------------------------------------------------------
-1.0 Base
+1.0 Normalize
+Selected elements of normalize.css v3.0.2 by Nicholas Gallagher,
+scoped to the gift aid calculator container.
+(MIT License - http://git.io/normalize)
+--------------------------------------------------------------*/
+/**
+ * 1. Set default font family to sans-serif.
+ */
+.giftaid-calculator {
+    font-family: sans-serif;
+    /* 1 */
+}
+.giftaid-calculator b,
+.giftaid-calculator strong {
+    font-weight: bold;
+}
+.giftaid-calculator button,
+.giftaid-calculator input,
+.giftaid-calculator optgroup,
+.giftaid-calculator select,
+.giftaid-calculator textarea {
+    margin: 0;
+    font: inherit;
+    color: inherit;
+}
+.giftaid-calculator button {
+    overflow: visible;
+}
+.giftaid-calculator button,
+.giftaid-calculator select {
+    text-transform: none;
+}
+.giftaid-calculator button,
+.giftaid-calculator input[type="reset"],
+.giftaid-calculator input[type="submit"] {
+    -webkit-appearance: button;
+}
+.giftaid-calculator button::-moz-focus-inner,
+.giftaid-calculator input::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+.giftaid-calculator input {
+    line-height: normal;
+}
+.giftaid-calculator input[type="number"]::-webkit-inner-spin-button,
+.giftaid-calculator input[type="number"]::-webkit-outer-spin-button {
+    height: auto;
+}
+.giftaid-calculator fieldset {
+    margin: 0 2px;
+    padding: 0.35em 0.625em 0.75em;
+    border: 1px solid #c0c0c0;
+}
+.giftaid-calculator legend {
+    padding: 0;
+    border: 0;
+}
+/*--------------------------------------------------------------
+2.0 Base
 --------------------------------------------------------------*/
 /* Use the simpler box model that includes padding in element heights/widths. */
 .giftaid-calculator {
@@ -23,7 +83,7 @@
     box-sizing: inherit;
 }
 /*--------------------------------------------------------------
-2.0 Dynamic elements
+3.0 Dynamic elements
 --------------------------------------------------------------*/
 /* Only show the Giver Claims fields to higher-rate taxpayers. */
 .giftaid-group-giver {

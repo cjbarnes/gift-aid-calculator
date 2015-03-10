@@ -12,12 +12,106 @@
 /*--------------------------------------------------------------
 >>> TABLE OF CONTENTS:
 ----------------------------------------------------------------
- 1.0 Base
- 2.0 Dynamic elements
+ 1.0 Normalize
+ 2.0 Base
+ 3.0 Dynamic elements
 --------------------------------------------------------------*/
 
 /*--------------------------------------------------------------
-1.0 Base
+1.0 Normalize
+Selected elements of normalize.css v3.0.2 by Nicholas Gallagher,
+scoped to the gift aid calculator container.
+(MIT License - http://git.io/normalize)
+--------------------------------------------------------------*/
+
+/**
+ * 1. Set default font family to sans-serif.
+ */
+.giftaid-calculator {
+    font-family: sans-serif; /* 1 */
+
+    // Address style set to `bolder` in Firefox 4+, Safari, and Chrome.
+    b,
+    strong {
+        font-weight: bold;
+    }
+
+    // 1. Correct color not being inherited.
+    //    Known issue: affects color of disabled elements.
+    // 2. Correct font properties not being inherited.
+    // 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
+    button,
+    input,
+    optgroup,
+    select,
+    textarea {
+        color: inherit; //* 1 */
+        font: inherit; //* 2 */
+        margin: 0; //* 3 */
+    }
+
+    // Address `overflow` set to `hidden` in IE 8/9/10/11.
+    button {
+        overflow: visible;
+    }
+
+    // Address inconsistent `text-transform` inheritance for `button` and
+    // `select`.
+    // All other form control elements do not inherit `text-transform` values.
+    // Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
+    // Correct `select` style inheritance in Firefox.
+    button,
+    select {
+        text-transform: none;
+    }
+
+    // 1. Correct inability to style clickable `input` types in iOS.
+    button,
+    input[type="reset"],
+    input[type="submit"] {
+        -webkit-appearance: button; //* 1 */
+    }
+
+    // Remove inner padding and border in Firefox 4+.
+    button::-moz-focus-inner,
+    input::-moz-focus-inner {
+        border: 0;
+        padding: 0;
+    }
+
+    // Address Firefox 4+ setting `line-height` on `input` using `!important` in
+    // the UA stylesheet.
+    input {
+        line-height: normal;
+    }
+
+    // Fix the cursor style for Chrome's increment/decrement buttons. For
+    // certain `font-size` values of the `input`, it causes the cursor style of
+    // the decrement button to change from `default` to `text`.
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+        height: auto;
+    }
+
+    // Define consistent border, margin, and padding.
+    fieldset {
+        border: 1px solid #c0c0c0;
+        margin: 0 2px;
+        padding: 0.35em 0.625em 0.75em;
+    }
+
+    // 1. Correct `color` not being inherited in IE 8/9/10/11.
+    // 2. Remove padding so people aren't caught out if they zero out fieldsets.
+    legend {
+        border: 0; //* 1 */
+        padding: 0; //* 2 */
+    }
+
+}
+
+
+/*--------------------------------------------------------------
+2.0 Base
 --------------------------------------------------------------*/
 
 /* Use the simpler box model that includes padding in element heights/widths. */
@@ -33,7 +127,7 @@
 }
 
 /*--------------------------------------------------------------
-2.0 Dynamic elements
+3.0 Dynamic elements
 --------------------------------------------------------------*/
 
 /* Only show the Giver Claims fields to higher-rate taxpayers. */
