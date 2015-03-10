@@ -143,7 +143,7 @@ gulp.task('default', ['scripts', 'styles', 'assets', 'example-html'], function()
   });
 
   // Watch Less files.
-  gulp.watch(srcLess + 'gift-aid-calculator.less', function() {
+  gulp.watch(srcLess + '**/*', function() {
     runSequence('styles', 'complete-html');
   });
 
