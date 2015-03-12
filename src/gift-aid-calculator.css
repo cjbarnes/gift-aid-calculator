@@ -19,15 +19,8 @@ Selected elements of normalize.css v3.0.2 by Nicholas Gallagher,
 scoped to the gift aid calculator container.
 (MIT License - http://git.io/normalize)
 --------------------------------------------------------------*/
-/**
- * 1. Set default font family to sans-serif.
- */
 .giftaid-calculator {
     font-family: sans-serif;
-    /* 1 */
-    /**
-     * Address styling not present in IE 8/9/10/11, Safari, and Chrome.
-     */
 }
 .giftaid-calculator b,
 .giftaid-calculator strong {
@@ -59,72 +52,280 @@ scoped to the gift aid calculator container.
 /*--------------------------------------------------------------
 2.0 Typography
 --------------------------------------------------------------*/
+/* Row height. Must be consistent so the two columns align properly. */
+.giftaid-calculator p {
+    position: relative;
+    /* for arrow positioning */
+    height: 4em;
+    margin: 0;
+}
+.giftaid-calculator p.giftaid-total {
+    height: auto;
+}
+/*
+ * Labels - on separate lines to fields/results.
+ */
+.giftaid-calculator label {
+    display: block;
+    padding-bottom: 0.2em;
+}
+/* The user-editable gift amount. */
+.giftaid-calculator input {
+    width: 6.5em;
+    margin-right: 1em;
+    /* correct centre alignment (compensating for the '£') */
+    font-weight: bold;
+    text-align: right;
+}
+/* The user-editable tax rate. */
+.giftaid-calculator select {
+    width: 6.5em;
+}
+/* Huge number for total. */
+.giftaid-total-value {
+    font-size: 2em;
+}
 /*--------------------------------------------------------------
 3.0 Layout
 --------------------------------------------------------------*/
-/**
- * 1. Use the simpler box model that includes padding in element heights/widths.
- * 2. Use flexbox layout for the three columns.
- */
+/* Hidden elements for screen readers. */
+.screen-reader-only {
+    overflow: hidden;
+    white-space: nowrap;
+    text-indent: 105%;
+}
 .giftaid-calculator {
     box-sizing: border-box;
-    display: -webkit-flex;
-    display: -ms-flexbox;
-    display:         flex;
+    /* use the simpler box model everywhere */
+    max-width: 50em;
+    /* centre this container */
+    margin-right: auto;
+    margin-left: auto;
+    /* centre this container */
+    text-align: center;
+
+    *zoom: 1;
+}
+.giftaid-calculator:before,
+.giftaid-calculator:after {
+    content: "";
+    display: table;
+}
+.giftaid-calculator:after {
+    clear: both;
 }
 .giftaid-calculator *,
 .giftaid-calculator *:before,
 .giftaid-calculator *:after {
     box-sizing: inherit;
+    /* use the simpler box model everywhere */
 }
 /* Calculator title. */
-/**
- * Giver and Charity columns.
- * 1. Occupy twice as much width as the in-between column.
- */
-.giftaid-group {
+.giftaid-calculator-title {
     text-align: center;
-
-    -webkit-flex-grow: 2;
-    -ms-flex-positive: 2;
-            flex-grow: 2;
 }
-/**
- * In-between column.
- */
+/* Column headings */
+.giftaid-calculator h3 {
+    margin: 0;
+    padding: 0;
+    line-height: 3em;
+}
+.giftaid-calculator h3 > span {
+    /* Align to bottom of containing H3, so if title flows onto another line, it extends upwards not downwards. */
+    display: inline-block;
+    line-height: 1.1;
+    vertical-align: bottom;
+}
+/* Giver and Charity columns. */
+.giftaid-group {
+    float: left;
+    width: 38%;
+    /* occupy nearly twice as much width as the in-between column */
+}
+.giftaid-group-content {
+    padding-top: 1em;
+}
+.giftaid-total {
+    padding: 0.5em 0;
+}
+/* In-between column. */
 .giftaid-spacing {
-    text-align: center;
-
-    -webkit-flex-grow: 1;
-    -ms-flex-positive: 1;
-            flex-grow: 1;
+    float: left;
+    width: 23%;
+    /* 23% not 24%, to compensate for browser rounding errors */
+    padding-top: 1em;
+}
+.giftaid-hmrc {
+    position: relative;
+    z-index: 2;
+    top: 0.75em;
+    display: inline-block;
+    padding: 1em;
+    border-radius: 0.3em;
+    /* layer on top of arrows */
+}
+/* Arrows */
+.giftaid-arrow-left,
+.giftaid-arrow-right {
+    position: absolute;
+    bottom: 1.5em;
+    height: 0;
+    border-bottom: 3px dashed #236b5d;
+}
+.giftaid-arrow-left:after,
+.giftaid-arrow-right:after {
+    content: "";
+    position: absolute;
+    top: -9px;
+    width: 0;
+    height: 0;
+    /* CSS-only arrowhead */
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+}
+/* Left-to-right arrow. */
+.giftaid-arrow-right {
+    right: -10px;
+    left: 0;
+}
+.giftaid-arrow-right:after {
+    left: 100%;
+    /* CSS-only arrowhead */
+    border-left: 15px solid #236b5d;
+}
+/* Right-to-left arrow. */
+.giftaid-arrow-left {
+    right: 0;
+    left: -10px;
+}
+.giftaid-arrow-left:after {
+    right: 100%;
+    /* CSS-only arrowhead */
+    border-right: 15px solid #236b5d;
+}
+/* Half-width arrow in HMRC colours. */
+.giftaid-arrow-hmrc {
+    border-bottom-color: #791422;
+}
+.giftaid-arrow-hmrc:after {
+    border-right-color: #791422;
+    border-left-color: #791422;
+}
+.giftaid-arrow-hmrc.giftaid-arrow-right {
+    left: 50%;
+}
+.giftaid-arrow-hmrc.giftaid-arrow-left {
+    right: 50%;
+}
+.giftaid-arrow-hmrc.giftaid-arrow-angled:before {
+    /* Vertical shaft between HMRC box and horizontal arrow shaft. */
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 0;
+    height: 4em;
+    border-right: 3px dashed #791422;
 }
 /*--------------------------------------------------------------
 4.0 Dynamic elements
 --------------------------------------------------------------*/
 /* Only show the Giver Claims fields to higher-rate taxpayers. */
-.giftaid-giver-fields {
+.giftaid-higher-rate-only {
     display: none;
 }
-.show-giver-claims .giftaid-giver-fields {
+.show-giver-claims .giftaid-higher-rate-only {
     display: block;
 }
 /*--------------------------------------------------------------
 5.0 Theme
 --------------------------------------------------------------*/
-.giftaid-group-giver {
-    background: #9cc5bd;
+.giftaid-calculator h3 {
+    min-height: 60px;
 }
-.giftaid-group-giver h3 {
+.giftaid-group-content {
+    border-radius: 0.3em;
+}
+.giftaid-group-giver h3,
+.giftaid-group-giver label {
     color: #236b5d;
 }
-.giftaid-group-charity {
-    background: #dcf1a1;
+.giftaid-group-giver h3 {
+    margin-top: 5px;
+    margin-bottom: 0;
+    margin-left: 0.5em;
+    /* space to left of icon */
+    padding-right: 1em;
+    padding-bottom: 5px;
+    padding-left: 60px;
+    /* leave room for the icon */
+    text-align: left;
+    text-indent: 0.5em;
+    /* space between icon and text */
+    /*!
+         * Icon created by Kristin Poncek from the Noun Project. Licensed under
+         * the CC-BY 3.0 license, so please provide this credit in your
+         * projects if you use the icon.
+         */
+    background: transparent url("assets/giver-icon.png") left bottom no-repeat;
+}
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx), (min-resolution: 144dpi) {
+    .giftaid-group-giver h3 {
+        /* Hi-DPI icon */
+        background-image: url("assets/giver-icon@2x.png");
+        background-size: 60px 60px;
+    }
+}
+.giftaid-group-giver .giftaid-group-content {
+    background: #acd5cd;
+}
+.giftaid-group-charity h3,
+.giftaid-group-charity label {
+    color: #5e7914;
 }
 .giftaid-group-charity h3 {
-    color: #5e7914;
+    margin-top: 0;
+    margin-right: 0.5em;
+    margin-bottom: 5px;
+    /* space to right of icon */
+    padding-right: 60px;
+    /* leave room for the icon */
+    padding-bottom: 0;
+    padding-left: 1em;
+    /* space to left of text */
+    text-align: left;
+    /*!
+         * Logo Care Box by logoopenstock.com. Licensed under the CC-BY 3.0
+         * license, so please provide this credit in your projects if you use
+         * the icon.
+         */
+    background: transparent url("assets/charity-icon.png") right bottom no-repeat;
+}
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx), (min-resolution: 144dpi) {
+    .giftaid-group-charity h3 {
+        /* Hi-DPI icon */
+        background-image: url("assets/charity-icon@2x.png");
+        background-size: 60px 60px;
+    }
+}
+.giftaid-group-charity .giftaid-group-content {
+    background: #dcf1a1;
 }
 .giftaid-hmrc {
     background: #f3a2ad;
     color: #791422;
+}
+/* Totals at bottom of each column. */
+.giftaid-total {
+    border-radius: 0 0 0.3em 0.3em;
+    color: #fff;
+}
+.giftaid-total label {
+    color: inherit;
+}
+.giftaid-group-giver .giftaid-total {
+    background: #236b5d;
+}
+.giftaid-group-charity .giftaid-total {
+    background: #5e7914;
 }

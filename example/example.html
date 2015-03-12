@@ -22,57 +22,68 @@
 <!-- Gift Aid calculator -->
 <form class="js-giftaid-calculator no-js giftaid-calculator">
   <div class="giftaid-group giftaid-group-giver">
-    <h3>You</h3>
-    <p>
-      <label for="giftaid-gift-input">Your gift:</label>
-      <strong>£</strong>
-      <input class="js-input-gift" id="giftaid-gift-input" type="number" step="0.01" min="5" value="10.00">
-    </p>
-    <p>
-      <label for="giftaid-taxrate">Your tax rate:</label>
-      <select class="js-input-taxrate" id="giftaid-taxrate">
-        <option value="20" selected>20%</option>
-        <option value="40">40%</option>
-        <option value="45">45%</option>
-      </select>
-    </p>
-    <div class="giftaid-giver-fields">
+    <h3><span>You</span></h3>
+    <div class="giftaid-group-content">
       <p>
-        <label>Tax you can claim back:</label>
+        <label for="giftaid-gift-input">Your gift:</label>
+        <strong>£</strong>
+        <input class="js-input-gift" id="giftaid-gift-input" type="number" step="0.01" min="5" value="10.00">
+      </p>
+      <p>
+        <label for="giftaid-taxrate">Your tax rate:</label>
+        <select class="js-input-taxrate" id="giftaid-taxrate">
+          <option value="20" selected>20%</option>
+          <option value="40">40%</option>
+          <option value="45">45%</option>
+        </select>
+      </p>
+      <p class="giftaid-higher-rate-only">
+        <label>Your tax refund:</label>
         <strong>£</strong>
         <strong class="js-output-giver-claims">&nbsp;</strong>
       </p>
+      <p class="giftaid-total">
+        <label>Your gift <em>actually</em> costs:</label>
+        <strong class="giftaid-total-sign">£</strong>
+        <strong class="giftaid-total-value js-output-net-gift-given">&nbsp;</strong>
+      </p>
     </div>
-    <p>
-      <label>Your gift <em>actually</em> costs you:</label>
-      <strong>£</strong>
-      <strong class="js-output-net-gift-given">&nbsp;</strong>
-    </p>
   </div>
   <div class="giftaid-spacing">
+    <h3 class="screen-reader-only">
+      <abbr title="HM Revenue &amp; Customs">HMRC</abbr>
+    </h3>
+    <p class="spacer">
+      <span class="giftaid-arrow-right">&nbsp;</span>
+    </p>
     <p>
-      <strong class="giftaid-hmrc">
-        <abbr title="HM Revenue &amp; Customs">HMRC</abbr>
-      </strong>
+      <strong class="giftaid-hmrc">HMRC</strong>
+      <span class="giftaid-arrow-right giftaid-arrow-hmrc">&nbsp;</span>
+    </p>
+    <p class="giftaid-higher-rate-only spacer">
+      <span class="giftaid-arrow-left giftaid-arrow-angled giftaid-arrow-hmrc">&nbsp;</span>
     </p>
   </div>
   <div class="giftaid-group giftaid-group-charity">
-    <h3>Charity</h3>
-    <p>
-      <label>Initial gift:</label>
-      <strong>£</strong>
-      <strong class="js-output-gross-gift">&nbsp;</strong>
-    </p>
-    <p>
-      <label>+ Gift Aid of:</label>
-      <strong>£</strong>
-      <strong class="js-output-charity-claims">&nbsp;</strong>
-    </p>
-    <p>
-      <label>Total charity gets</label>
-      <strong>£</strong>
-      <strong class="js-output-net-gift-received">&nbsp;</strong>
-    </p>
+    <h3><span>Carebox Charity</span></h3>
+    <div class="giftaid-group-content">
+      <p>
+        <label>Initial gift:</label>
+        <strong>£</strong>
+        <strong class="js-output-gross-gift">&nbsp;</strong>
+      </p>
+      <p>
+        <label>+ Gift Aid of:</label>
+        <strong>£</strong>
+        <strong class="js-output-charity-claims">&nbsp;</strong>
+      </p>
+      <p class="giftaid-higher-rate-only spacer">&nbsp;</p>
+      <p class="giftaid-total">
+        <label>Total Carebox gets:</label>
+        <strong class="giftaid-total-sign">£</strong>
+        <strong class="giftaid-total-value js-output-net-gift-received">&nbsp;</strong>
+      </p>
+    </div>
   </div>
 </form>
 

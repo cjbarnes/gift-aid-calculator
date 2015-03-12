@@ -1,0 +1,35 @@
+////
+// The micro clearfix
+//
+// @author Nicolas Gallagher http://nicolasgallagher.com/micro-clearfix-hack
+//
+.clearfix() {
+    *zoom:1;
+
+    &:before,
+    &:after{
+        content:"";
+        display:table;
+    }
+    &:after{
+        clear:both;
+    }
+}
+
+////
+// Image replacement technique
+//
+.image-replacement() {
+    text-indent: 105%;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+////
+// Retina/Hi-DPI media query
+//
+.retina(@rules) {
+  @media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 1.5dppx), (min-resolution: 144dpi) {
+    @rules();
+  }
+}
