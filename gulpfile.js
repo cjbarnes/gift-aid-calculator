@@ -125,7 +125,7 @@ gulp.task('complete-html', function() {
 gulp.task('assets', function() {
 
   // Copy all files in assets to both /example and /dist.
-  return gulp.src(src + 'assets/**/*.*', {read: false})
+  return gulp.src(src + 'assets/**/*.*')
     .pipe(gulp.dest(example + 'assets/'))
     .pipe(gulp.dest(dist + 'assets/'));
 });
