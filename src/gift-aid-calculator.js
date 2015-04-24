@@ -125,6 +125,7 @@
 
     // Other variables.
     var gift,
+        field,
         i,
         l,
         classRegex = /(^| )show-giver-claims( |$)/;
@@ -199,7 +200,7 @@
     };
 
     // Loop through the list-of-NodeLists to update each node's contents.
-    for (var field in outputs) {
+    for (field in outputs) {
       /*
        * Loop through the individual DOM elements in this NodeList and change
        * their contents to = the matching gift-calculation value.
