@@ -61,7 +61,7 @@
      * The standard tax rate. Any tax above this threshold that is paid on the
      * gift is claimed back by the giver, not the charity.
      */
-    var basicRate = 20;
+    var _basicRate = 20;
 
     // Other variables used in the calculation.
     var charityClaimTaxRate,
@@ -71,14 +71,14 @@
         giverClaimAmount = 0;
 
     // Validate and prepare the given taxRate. Fallback to basicRate if NaN.
-    taxRate = parseTaxRate(taxRate) || basicRate;
+    taxRate = parseTaxRate(taxRate) || _basicRate;
 
     /*
      * Amount of tax the charity can claim back. Is always the basicRate unless
      * the giver's tax burden does not reach that threshold. (This is future-
      * proofing for the introduction of lower tax rates than the basic rate.)
      */
-    charityClaimTaxRate = (taxRate < basicRate) ? taxRate : basicRate;
+    charityClaimTaxRate = (taxRate < _basicRate) ? taxRate : _basicRate;
 
     /*
      * Convert gift amount into pence for easier (and more accurate) maths. Fall
