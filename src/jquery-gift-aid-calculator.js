@@ -146,8 +146,6 @@
       return;
     }
 
-    console.log(gift);
-
     /*
      * Show/hide the Giver Claims part of the calculator in CSS, depending on
      * whether the giver can claim back tax on the gift.
@@ -193,8 +191,8 @@
     // Loop through the list-of-collections to update each node's contents.
     $.each(outputs, function (field, $elements) {
       /*
-       * Loop through the individual DOM elements in this jQuery collection and
-       * change their contents to = the matching gift-calculation value.
+       * * Change the contents of all DOM elements in this jQuery collection to
+       * = the matching gift-calculation value.
        */
       $elements.text(gift[field]);
     });

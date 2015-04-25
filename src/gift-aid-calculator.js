@@ -232,7 +232,7 @@
   /**
    * Hook into a DOM element event, abstracting around IE8's lack of support
    * for `addEventListener()`.
-   * @param {Node}     target   The element that should listen for this event.
+   * @param {Element}  target   The element that should listen for this event.
    * @param {String}   type     The name of the event type to listen for.
    * @param {Function} listener The function to call when this event occurs.
    */
@@ -340,6 +340,7 @@
   } else if (document.addEventListener) {
     document.addEventListener('DOMContentLoaded', initGiftAidCalculator);
   } else {
+    // IE.old version of DOMContentLoaded event.
     document.attachEvent('onreadystatechange', function () {
       if ('loading' !== document.readyState) {
         initGiftAidCalculator();
