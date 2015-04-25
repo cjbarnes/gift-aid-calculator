@@ -180,12 +180,12 @@
      * looping through these objects easier.
      */
     outputs = {
-      grossGift      : $('.js-output-gross-gift'),
-      taxRate        : $('.js-output-taxrate'),
-      charityClaims  : $('.js-output-charity-claims'),
-      giverClaims    : $('.js-output-giver-claims'),
-      netGiftGiven   : $('.js-output-net-gift-given'),
-      netGiftReceived: $('.js-output-net-gift-received')
+      grossGift      : $calc.find('.js-output-gross-gift'),
+      taxRate        : $calc.find('.js-output-taxrate'),
+      charityClaims  : $calc.find('.js-output-charity-claims'),
+      giverClaims    : $calc.find('.js-output-giver-claims'),
+      netGiftGiven   : $calc.find('.js-output-net-gift-given'),
+      netGiftReceived: $calc.find('.js-output-net-gift-received')
     };
 
     // Loop through the list-of-collections to update each node's contents.
