@@ -23,10 +23,10 @@ var example = 'example/gift-aid-calculator/';
 // Process JavaScript and add to dist and example folders.
 gulp.task('scripts', function() {
 
-  return gulp.src(src + 'gift-aid-calculator.js')
+  return gulp.src([src + 'gift-aid-calculator.js', src + 'jquery-gift-aid-calculator.js' ])
     // Error handling: notify on error.
     .pipe(plumber(notify.onError({
-      title: 'Error compiling gift-aid-calculator.js',
+      title: 'Error compiling <%= error.fileName %>',
       message: "Scripts Error: <%= error.message %>",
       sound: 'Pop'
     })))
@@ -90,10 +90,10 @@ gulp.task('styles', function() {
  */
 gulp.task('example-html', function() {
 
-  return gulp.src(src + 'example.html')
+  return gulp.src([src + 'example.html', src + 'example-jquery.html'])
     // Error handling: notify on error.
     .pipe(plumber(notify.onError({
-      title: 'Error compiling example.html',
+      title: 'Error compiling <%= error.fileName %>',
       message: "HTML Error: <%= error.message %>",
       sound: 'Pop'
     })))
@@ -138,7 +138,7 @@ gulp.task('default', ['scripts', 'styles', 'assets', 'example-html'], function()
   runSequence('complete-html');
 
   // Watch JavaScript files.
-  gulp.watch(src + 'gift-aid-calculator.js', function() {
+  gulp.watch([src + 'gift-aid-calculator.js', src + 'jquery-gift-aid-calculator.js'], function() {
     runSequence('scripts', 'complete-html');
   });
 
@@ -152,7 +152,7 @@ gulp.task('default', ['scripts', 'styles', 'assets', 'example-html'], function()
 
   // Watch HTML files.
   gulp.watch(src + 'gift-aid-calculator.html', ['example-html', 'complete-html']);
-  gulp.watch(src + 'example.html', ['example-html']);
+  gulp.watch(src + ['example.html', 'example-jquery.html'], ['example-html']);
   gulp.watch(src + 'gift-aid-calculator-complete.html', ['complete-html']);
 
 });
